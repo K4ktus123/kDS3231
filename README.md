@@ -1,2 +1,178 @@
 # kDS3231
 DS3231 library for Arduino
+
+Copyright 2019 Bartosz Kozieł
+
+version 1.0 - initial release
+
+This file is part of kDS3231 library.
+
+    kDS3231 is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    kDS3231 is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with kDS3231.  If not, see <http://www.gnu.org/licenses/>.
+
+
+TODO:
+-check for bugs
+-add more examples
+
+Commands description:
+
+1:Read functions
+
+clockClear - clears configuration registers 0x0E and 0x0F. Recommended on startup, not required though.
+
+readSeconds - returns seconds value read from the RTC.
+
+readMinutes - returns minutes value read from the RTC.
+
+readHours - returns hours value read from the RTC. Only 24 hour mode supported, but it's easy to convert that value to 12 hour format.
+
+readDay - returns days value read from the RTC.
+
+readMonth - returns months value read from the RTC.
+
+readYear - returns years value read from the RTC.
+
+readEOSC - returns inverted value of EOSC bit in control register. Tells if the oscillator is enabled.
+
+readBBSQW - returns value of BBSQW in control register. Tells if batery-backed square wave is enabled.
+
+readSQWFreq - returns frequency of square wave output. Possible values are 1, 1024, 4096 and 8192.
+
+readINTCN - returns value of INTCN bit in control register. Tells if SQW/INT output is set to output square wave with set frequency of trigger alarm interrupt.
+
+readA1enable - returns A1E bit in control register. Tells if alarm 1 is enabled.
+
+readA2enable - returns A2E bit in control register. Tells if alarm 2 is enabled.
+
+readControl - returns value of control register.
+
+readOSF - returns value of OSF bit in status register. Tells if oscillator was stopped because of for example low battery voltage. Have a look in the datasheet for further reference.
+
+read32K - returns value of EN32kHz bit in status register. Tells if 32K output is enabled.
+
+readBSY - returns value of BSY bit in ststus register. Tells if the IC is currently executing TCXO functions.
+
+readA1trigger - returns value of A1F bit in control register. Tells if alarm 1 was triggered.
+
+readA2trigger - returns value of A2F bit in control register. Tells if alarm 2 was triggered.
+
+readStatus - returns value of status register.
+
+readOffset - returns value of offset register.
+
+readTemp - returns temperature read by the IC in degrees C.
+
+readA1mode - returns alarm 1 mode. Possible values are:
+0 - when day, minutes, hours and seconds match. Day interpreted as day of month.
+1 - when day, minutes, hours and seconds match. Day interpreted as day of week.
+8 - when minutes, hours and seconds match.
+12 - when when minutes and seconds match.
+14 - when seconds match
+15 - every second
+
+readA2mode - returns alarm 2 mode. Possible values are:
+0 - when day, minutes and hours match. Day interpreted as day of month.
+1 - when day, minutes and hours match. Day interpreted as day of week.
+4 - when minutes and hours match.
+6 - when minutes match.
+7 - every minute (at 0 second)
+
+readA1seconds - returns value of seconds for alarm 1.
+
+readA1minutes - returns value of minutes for alarm 1.
+
+readA1hours - returns value of hours for alarm 1.
+
+readA1day - returns value of days for alarm 1.
+
+readA2minutes - returns value of minutes for alarm 2.
+
+readA2hours - returns value of hours for alarm 2.
+
+readA2day - returns value of days for alarm 2.
+
+2:Set functions
+
+setSeconds - sets seconds. Takes 8-bit int value.
+
+setMinutes - sets minutes. Takes 8-bit int value.
+
+setHours - sets hours. Takes 8-bit int value.
+
+setDay - sets day of week. Takes 8-bit int value.
+
+setDate - sets day of month. Takes 8-bit int value.
+
+setMonth - sets month. Takes 8-bit int value.
+
+setYear - sets year. Takes int value (16-bit).
+
+setOffset - sets value of offset register. Takes 8-bit int value.
+
+setControl - sets value of control register. Takes 8-bit int value.
+
+setStatus - sets value of status register. Takes 8-bit int value.
+
+setEOSC - sets inverted EOSC bit value in control register. When set to 0, DS3231 stops the oscilltor when powered by battery. Takes bool value.
+
+setBBSQW - sets BBSQW bit in control register. Enables or disables battery-backed square wave output. Takes bool value.
+
+setINTCN - sets INTCN bit in control register. When set to 0, a square wave is output on SQW/INT pin. When set to 1, outputs alarm interrupts. Takes bool value.
+
+setSQWfreq - sets frequency of SQW output. Possible values are 1, 1024, 4096 and 8192. Takes int value (16-bit).
+
+setA1enable - sets A1E bit in control registers. Set to 1 to enable alarm 1, 0 to disable it. Takes bool value.
+
+setA2enable - sets A2E bit in control registers. Set to 1 to enable alarm 2, 0 to disable it. Takes bool value.
+
+clearA1trigger - clears A1F bit in status register.
+
+clearA2trigger - clears A2F bit in status register.
+
+set32Kenable - sets EN32kHz bit in status register. Setting to 1 enables 32K output. Takes bool value.
+
+clearOSF - clears OSF bit in status register.
+
+setA1mode - sets alarm 1 mode. Possible values are:
+0 - when day, minutes, hours and seconds match. Day interpreted as day of month.
+1 - when day, minutes, hours and seconds match. Day interpreted as day of week.
+8 - when minutes, hours and seconds match.
+12 - when when minutes and seconds match.
+14 - when seconds match
+15 - every second
+
+setA1seconds - sets seconds for alarm 1. Takes 8-bit int value.
+
+setA1minutes - sets minutes for alarm 1. Takes 8-bit int value.
+
+setA1hours - sets hours for alarm 1. Takes 8-bit int value.
+
+setA1day - sets day for alarm 1. Takes 8-bit int value.
+
+setA2mode - sets alarm 2 mode. Possible values are:
+0 - when day, minutes and hours match. Day interpreted as day of month.
+1 - when day, minutes and hours match. Day interpreted as day of week.
+4 - when minutes and hours match.
+6 - when minutes match.
+7 - every minute (at 0 second)
+
+setA2minutes - sets minutes for alarm 2. Takes 8-bit int value.
+
+setA2hours - sets hours for alarm 2. Takes 8-bit int value.
+
+setA2day - sets day for alarm 2. Takes 8-bit int value.
+
+When setting up an alarm, clear its trigger first, then set the time, then set the mode and finish it with enabling it. You must do it in this order or it won't work.
+
+Have a look at DS3231 datasheet for further reference.
