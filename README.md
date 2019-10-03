@@ -1,9 +1,18 @@
 # kDS3231
-DS3231 library for Arduino
+The DS3231 is a low-cost, extremely accurate
+I²C real-time clock (RTC) with an integrated
+temperature-compensated crystal oscillator (TCXO)
+and crystal. It's made by Maxim Integrated.
+
+kDS3231 is an Arduino library for that chip.
+It *should* support all its functionalities, although
+I'm still not sure if I included everything.
+If you find any bugs please report them immediately.
 
 TODO:
 -check for bugs
--add more examples
+-add more example sketches
+-create a version for Wire1 interace on chips like ATmega328PB
 
 Commands description:
 
