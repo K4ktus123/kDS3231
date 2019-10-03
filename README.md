@@ -1,26 +1,6 @@
 # kDS3231
 DS3231 library for Arduino
 
-Copyright 2019 Bartosz Kozieł
-
-version 1.0 - initial release
-
-This file is part of kDS3231 library.
-
-    kDS3231 is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
-
-    kDS3231 is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with kDS3231.  If not, see <http://www.gnu.org/licenses/>.
-
-
 TODO:
 -check for bugs
 -add more examples
