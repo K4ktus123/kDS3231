@@ -1,9 +1,10 @@
 /*kDS3231
  * 
  * Arduino library for DS3231 RTC
- * Copyright 2019 Bartosz Kozieł
+ * Copyright 2019, 2020 Bartosz Kozieł
  * 
  * version 1.0 - initial release
+ * version 1.1 - added forceTempConv function and changed the way library decodes temperature info
  * 
  * This file is part of kDS3231 library.
 
@@ -52,7 +53,7 @@ class kDS3231
   int8_t readA1trigger();
   int8_t readStatus();
   int8_t readOffset();
-  int8_t readTemp();
+  double readTemp();
   int8_t readA1mode();
   int8_t readA2mode();
   int8_t readA1seconds();
@@ -91,6 +92,7 @@ class kDS3231
   void setA2minutes(int8_t val);
   void setA2hours(int8_t val);
   void setA2day(int8_t val);
+  void forceTempConv();
   
   private:
   void wireTransmit(int address, int value);
@@ -100,3 +102,4 @@ class kDS3231
 };
 
 #endif
+
