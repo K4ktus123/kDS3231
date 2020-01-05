@@ -121,7 +121,7 @@ setINTCN - sets INTCN bit in control register. When set to 0, a square wave is o
 
 setSQWfreq - sets frequency of SQW output. Possible values are 1, 1024, 4096 and 8192. Takes int value (16-bit).
 
-forceTempConv - sets bit CONV bit in control register and forces the RTC to update the temperature reading and execute TCXO algorithm.
+forceTempConv - sets CONV bit in control register and forces the RTC to update the temperature reading and execute TCXO algorithm.
 
 setA1enable - sets A1E bit in control registers. Set to 1 to enable alarm 1, 0 to disable it. Takes bool value.
 
