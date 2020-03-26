@@ -20,7 +20,7 @@
     You should have received a copy of the GNU General Public License
     along with kDS3231.  If not, see <http://www.gnu.org/licenses/>.
  *
- *This example shows how to utilize square vave output functionality.
+ *This example shows how to utilize square wave output functionality.
  *It works just like a blink sketch, but it uses DS3231 to achieve very precise blinking frequency.
  *Make sure to connect the SQW/INT output to interrupt 0 input on Arduino board. On Uno it's on pin 2.
  */
