@@ -4,7 +4,6 @@
  * Copyright 2019, 2020 Bartosz Kozieł
  * 
  * version 1.0 - initial release
- * version 1.1 - added forceTempConv function and changed the way library decodes temperature info
  * 
  * This file is part of kDS3231 library.
 
