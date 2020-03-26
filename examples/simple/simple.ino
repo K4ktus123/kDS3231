@@ -4,6 +4,7 @@
  * Copyright 2019, 2020 Bartosz Kozieł
  * 
  * version 1.0 - initial release
+ * version 1.1 - added short sketch description
  * 
  * This file is part of kDS3231 library.
 
@@ -19,6 +20,8 @@
 
     You should have received a copy of the GNU General Public License
     along with kDS3231.  If not, see <http://www.gnu.org/licenses/>.
+
+ *This example will print time and date into the serial monitor. Make sure to set it to 9600 baud.
  */
 
 #include <kDS3231.h>
