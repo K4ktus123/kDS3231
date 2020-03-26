@@ -6,6 +6,7 @@
  * 
  * version 1.0 - initial release
  * version 1.1 - added forceTempConv function and changed the way library decodes temperature info
+ * version 1.2 - fixed a bug in readYear function that caused it to return hours value instead
  * 
  * This file is part of kDS3231 library.
 
@@ -103,7 +104,7 @@ int8_t kDS3231::readMonth()
 
 int kDS3231::readYear()
 {
-  return 2000 + bcd2dec(wireRequest(0x02));
+  return 2000 + bcd2dec(wireRequest(0x06));
 }
 
 int8_t kDS3231::readEOSC()
