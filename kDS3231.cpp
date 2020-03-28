@@ -7,6 +7,8 @@
  * version 1.0 - initial release
  * version 1.1 - added forceTempConv function and changed the way library decodes temperature info
  * version 1.2 - fixed a bug in readYear function that caused it to return hours value instead
+ * version 1.3 - changed alarm mode setting to use letters instead of numbers
+ *             - changing alarm time doesn't clear mask bits anymore
  * 
  * This file is part of kDS3231 library.
 
@@ -393,40 +395,40 @@ void kDS3231::clearOSF()
   wireTransmit(0x0F, (wireRequest(0x0F) | B01111111));
 }
 
-void kDS3231::setA1mode(int8_t val)
+void kDS3231::setA1mode(char val)
 {
   switch(val) {
-    case 0:
+    case 'D':
     wireTransmit(0x07, (wireRequest(0x07) & B01111111));
     wireTransmit(0x08, (wireRequest(0x08) & B01111111));
     wireTransmit(0x09, (wireRequest(0x09) & B01111111));
     wireTransmit(0x0A, (wireRequest(0x0A) & B00111111));
     break;
-    case 1:
+    case 'd':
     wireTransmit(0x07, (wireRequest(0x07) & B01111111));
     wireTransmit(0x08, (wireRequest(0x08) & B01111111));
     wireTransmit(0x09, (wireRequest(0x09) & B01111111));
     wireTransmit(0x0A, ((wireRequest(0x0A) & B01111111) | B01000000));
     break;
-    case 8:
+    case 'h':
     wireTransmit(0x07, (wireRequest(0x07) & B01111111));
     wireTransmit(0x08, (wireRequest(0x08) & B01111111));
     wireTransmit(0x09, (wireRequest(0x09) & B01111111));
     wireTransmit(0x0A, (wireRequest(0x0A) | B11000000));
     break;
-    case 12:
+    case 'm':
     wireTransmit(0x07, (wireRequest(0x07) & B01111111));
     wireTransmit(0x08, (wireRequest(0x08) & B01111111));
     wireTransmit(0x09, (wireRequest(0x09) | B10000000));
     wireTransmit(0x0A, (wireRequest(0x0A) | B10000000));
     break;
-    case 14:
+    case 's':
     wireTransmit(0x07, (wireRequest(0x07) & B01111111));
     wireTransmit(0x08, (wireRequest(0x08) | B10000000));
     wireTransmit(0x09, (wireRequest(0x09) | B10000000));
     wireTransmit(0x0A, (wireRequest(0x0A) | B10000000));
     break;
-    case 15:
+    case 'S':
     wireTransmit(0x07, (wireRequest(0x07) | B10000000));
     wireTransmit(0x08, (wireRequest(0x08) | B10000000));
     wireTransmit(0x09, (wireRequest(0x09) | B10000000));
@@ -435,30 +437,30 @@ void kDS3231::setA1mode(int8_t val)
   }
 }
 
-void kDS3231::setA2mode(int8_t val)
+void kDS3231::setA2mode(char val)
 {
   switch(val) {
-    case 0:
+    case 'D':
     wireTransmit(0x0B, (wireRequest(0x0B) & B01111111));
     wireTransmit(0x0C, (wireRequest(0x0C) & B01111111));
     wireTransmit(0x0D, (wireRequest(0x0D) & B00111111));
     break;
-    case 1:
+    case 'd':
     wireTransmit(0x0B, (wireRequest(0x0B) & B01111111));
     wireTransmit(0x0C, (wireRequest(0x0C) & B01111111));
     wireTransmit(0x0D, ((wireRequest(0x0D) & B01111111) | B01000000));
     break;
-    case 4:
+    case 'h':
     wireTransmit(0x0B, (wireRequest(0x0B) & B01111111));
     wireTransmit(0x0C, (wireRequest(0x0C) & B01111111));
     wireTransmit(0x0D, (wireRequest(0x0D) | B11000000));
     break;
-    case 6:
+    case 'm':
     wireTransmit(0x0B, (wireRequest(0x0B) & B01111111));
     wireTransmit(0x0C, (wireRequest(0x0C) | B10000000));
     wireTransmit(0x0D, (wireRequest(0x0D) | B10000000));
     break;
-    case 7:
+    case 'M':
     wireTransmit(0x0B, (wireRequest(0x0B) | B10000000));
     wireTransmit(0x0C, (wireRequest(0x0C) | B10000000));
     wireTransmit(0x0D, (wireRequest(0x0D) | B10000000));
@@ -468,40 +470,41 @@ void kDS3231::setA2mode(int8_t val)
 
 void kDS3231::setA1seconds(int8_t val)
 {
-  wireTransmit(0x07, dec2bcd(val));
+  wireTransmit(0x07, (wireRequest(0x07) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA1minutes(int8_t val)
 {
-  wireTransmit(0x08, dec2bcd(val));
+  wireTransmit(0x08, (wireRequest(0x08) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA1hours(int8_t val)
 {
-  wireTransmit(0x09, dec2bcd(val));
+  wireTransmit(0x09, (wireRequest(0x09) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA1day(int8_t val)
 {
-  wireTransmit(0x0A, dec2bcd(val));
+  wireTransmit(0x0A, (wireRequest(0x0A) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA2minutes(int8_t val)
 {
-  wireTransmit(0x0B, dec2bcd(val));
+  wireTransmit(0x0B, (wireRequest(0x0B) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA2hours(int8_t val)
 {
-  wireTransmit(0x0C, dec2bcd(val));
+  wireTransmit(0x0C, (wireRequest(0x0C) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::setA2day(int8_t val)
 {
-  wireTransmit(0x0D, dec2bcd(val));
+  wireTransmit(0x0D, (wireRequest(0x0D) & B10000000) | dec2bcd(val));
 }
 
 void kDS3231::forceTempConv()
 {
   wireTransmit(0x0E, (wireRequest(0x0E) | B00100000));
 }
+
