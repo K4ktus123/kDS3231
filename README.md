@@ -136,12 +136,12 @@ set32Kenable - sets EN32kHz bit in status register. Setting to 1 enables 32K out
 clearOSF - clears OSF bit in status register.
 
 setA1mode - sets alarm 1 mode. Possible values are:
-0 - when day, minutes, hours and seconds match. Day interpreted as day of month.
-1 - when day, minutes, hours and seconds match. Day interpreted as day of week.
-8 - when minutes, hours and seconds match.
-12 - when when minutes and seconds match.
-14 - when seconds match
-15 - every second
+D - when date, minutes, hours and seconds match.
+d - when day, minutes, hours and seconds match.
+h - when minutes, hours and seconds match.
+m - when when minutes and seconds match.
+s - when seconds match
+S - every second
 
 setA1seconds - sets seconds for alarm 1. Takes 8-bit int value.
 
@@ -152,11 +152,11 @@ setA1hours - sets hours for alarm 1. Takes 8-bit int value.
 setA1day - sets day for alarm 1. Takes 8-bit int value.
 
 setA2mode - sets alarm 2 mode. Possible values are:
-0 - when day, minutes and hours match. Day interpreted as day of month.
-1 - when day, minutes and hours match. Day interpreted as day of week.
-4 - when minutes and hours match.
-6 - when minutes match.
-7 - every minute (at 0 second)
+D - when date, minutes and hours match.
+d - when day, minutes and hours match.
+h - when minutes and hours match.
+m - when minutes match.
+M - every minute (at 0 second)
 
 setA2minutes - sets minutes for alarm 2. Takes 8-bit int value.
 
@@ -164,6 +164,10 @@ setA2hours - sets hours for alarm 2. Takes 8-bit int value.
 
 setA2day - sets day for alarm 2. Takes 8-bit int value.
 
-When setting up an alarm, clear its trigger first, then set the time, then set the mode and finish it with enabling it. You must do it in this order or it won't work.
+When setting up an alarm, make sure to clear its trigger. When setting the mode, put the letter in single quotes, like this
+```
+setA1mode('S')
+```
+Don't forget to enable it, as well as set the INTCN bit to one.
 
 Have a look at DS3231 datasheet for further reference.
