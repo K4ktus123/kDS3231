@@ -26,7 +26,6 @@
  */
 
 #include <kDS3231.h>
-#include <Wire.h>
 
 kDS3231 clock;
 
