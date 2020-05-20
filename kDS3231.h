@@ -82,8 +82,8 @@ class kDS3231
   void clearA2trigger();
   void set32Kenable(bool val);
   void clearOSF();
-  void setA1mode(int8_t val);
-  void setA2mode(int8_t val);
+  void setA1mode(char val);
+  void setA2mode(char val);
   void setA1seconds(int8_t val);
   void setA1minutes(int8_t val);
   void setA1hours(int8_t val);
