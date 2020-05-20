@@ -263,7 +263,7 @@ void kDS3231::setMinutes(int8_t val)
   wireTransmit(0x01, dec2bcd(val));
 }
 
-void setHours(int8_t val) {
+void kDS3231::setHours(int8_t val) {
   wireTransmit(0x02, dec2bcd(val));
 }
 
