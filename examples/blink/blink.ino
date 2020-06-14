@@ -3,8 +3,6 @@
  * Arduino library for DS3231 RTC
  * Copyright 2019, 2020 Bartosz Kozieł
  * 
- * version 1.0 - initial release
- * 
  * This file is part of kDS3231 library.
 
     kDS3231 is free software: you can redistribute it and/or modify
