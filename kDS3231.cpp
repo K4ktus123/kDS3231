@@ -4,12 +4,6 @@
  * Arduino library for DS3231 RTC
  * Copyright 2019, 2020 Bartosz Kozieł
  * 
- * version 1.0 - initial release
- * version 1.1 - added forceTempConv function and changed the way library decodes temperature info
- * version 1.2 - fixed a bug in readYear function that caused it to return hours value instead
- * version 1.3 - changed alarm mode setting to use letters instead of numbers
- *             - changing alarm time doesn't clear mask bits anymore
- * 
  * This file is part of kDS3231 library.
 
     kDS3231 is free software: you can redistribute it and/or modify
@@ -101,12 +95,17 @@ int8_t kDS3231::readDate()
 
 int8_t kDS3231::readMonth()
 {
-  return bcd2dec(wireRequest(0x05));
+  return bcd2dec(wireRequest(0x05) & 127);
 }
 
-int kDS3231::readYear()
+int8_t kDS3231::readYear()
 {
-  return 2000 + bcd2dec(wireRequest(0x06));
+  return bcd2dec(wireRequest(0x06));
+}
+
+int8_t kDS3231::readCentury()
+{
+  return bcd2dec(wireRequest(0x05)) >> 7;
 }
 
 int8_t kDS3231::readEOSC()
