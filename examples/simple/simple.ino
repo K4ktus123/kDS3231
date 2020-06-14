@@ -3,9 +3,6 @@
  * Arduino library for DS3231 RTC
  * Copyright 2019, 2020 Bartosz Kozieł
  * 
- * version 1.0 - initial release
- * version 1.1 - added short sketch description
- * 
  * This file is part of kDS3231 library.
 
     kDS3231 is free software: you can redistribute it and/or modify
@@ -68,6 +65,8 @@ void loop() {
   Serial.print(".");
   Serial.print(clock.readMonth());
   Serial.print(".");
+  Serial.print("20");
+  if(clock.readYear() < 10) { Serial.print("0"); }
   Serial.println(clock.readYear());
   Serial.println(" ");
   delay(1000);
