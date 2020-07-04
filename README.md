@@ -12,8 +12,9 @@ If you find any bugs please report them immediately.
 ## Installation
 1. Download the repository
 2. Extract the ZIP file
-3. Place the extracted folder in libraries folder inside your Arduino folder
-4. Enjoy!
+3. Rename the extracted folder to "kDS3231"
+4. Place the extracted folder in libraries folder inside your Arduino folder
+5. Enjoy!
 
 ## TODO
 - Check for bugs
