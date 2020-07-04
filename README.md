@@ -9,10 +9,14 @@ It *should* support all its functionalities, although
 I'm still not sure if I included everything.
 If you find any bugs please report them immediately.
 
+## Wire1 interface
+I'm happy to tell you that now you can use the second I2C interface on microcontrollers such as ATmega328PB.
+You can download the modified version [here](https://github.com/K4ktus123/kDS3231/tree/w1).
+
 ## Installation
 1. Download the repository
 2. Extract the ZIP file
-3. Rename the extracted folder to "kDS3231"
+3. Rename the extracted folder to "kDS3231" or "kDS3231w1", depending on the version you're willing to use
 4. Place the extracted folder in libraries folder inside your Arduino folder
 5. Enjoy!
 
@@ -20,10 +24,6 @@ If you find any bugs please report them immediately.
 - Check for bugs
 - Add more example sketches
 - Figure out how to create boards manager link for easy installation
-
-## Wire1 interface
-I'm happy to tell you that now you can use the second I2C interface on microcontrollers such as ATmega328PB.
-You can download the modified version [here](https://github.com/K4ktus123/kDS3231/tree/w1).
 
 ## Commands description
 
