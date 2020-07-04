@@ -19,8 +19,11 @@ If you find any bugs please report them immediately.
 ## TODO
 - Check for bugs
 - Add more example sketches
-- Create a version for Wire1 interace on chips like ATmega328PB
 - Figure out how to create boards manager link for easy installation
+
+## Wire1 interface
+I'm happy to tell you that now you can use the second I2C interface on microcontrollers such as ATmega328PB.
+You can download the modified version [here](https://github.com/K4ktus123/kDS3231/tree/w1).
 
 ## Commands description
 
