@@ -1,29 +1,29 @@
-/*kDS3231
+/*kDS3231w1
  * 
- * Arduino library for DS3231 RTC
- * Copyright 2019, 2020 Bartosz Kozieł
+ * Arduino library for DS3231w1 RTC
+ * Copyright 2020 Bartosz Kozieł
  * 
  * This file is part of kDS3231 library.
 
-    kDS3231 is free software: you can redistribute it and/or modify
+    kDS3231w1 is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
-    kDS3231 is distributed in the hope that it will be useful,
+    kDS3231w1 is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with kDS3231.  If not, see <http://www.gnu.org/licenses/>.
+    along with kDS3231w1.  If not, see <http://www.gnu.org/licenses/>.
 
  *This example will print time and date into the serial monitor. Make sure to set it to 9600 baud.
  */
 
-#include <kDS3231.h>
+#include <kDS3231w1.h>
 
-kDS3231 clock;
+kDS3231w1 clock;
 
 void setup() {
   Serial.begin(9600);
