@@ -10,7 +10,7 @@ I'm still not sure if I included everything.
 If you find any bugs please report them immediately.
 
 ## Wire1 interface
-I'm happy to tell you that now the library the second I2C interface on microcontrollers such as ATmega328PB.
+I'm happy to tell you that now you can use the library with the second I2C interface on microcontrollers such as ATmega328PB.
 You can download the modified version [here](https://github.com/K4ktus123/kDS3231/tree/w1).
 
 ## Installation
