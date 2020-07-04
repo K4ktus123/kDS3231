@@ -49,7 +49,7 @@ readBBSQW - returns value of BBSQW in control register. Tells if batery-backed s
 
 readSQWFreq - returns frequency of square wave output. Possible values are 1, 1024, 4096 and 8192.
 
-readINTCN - returns value of INTCN bit in control register. Tells if SQW/INT output is set to output square wave with set frequency of trigger alarm interrupt.
+readINTCN - returns value of INTCN bit in control register. Tells if SQW/INT output is set to output square wave with set frequency or an alarm interrupt trigger signal.
 
 readA1enable - returns A1E bit in control register. Tells if alarm 1 is enabled.
 
