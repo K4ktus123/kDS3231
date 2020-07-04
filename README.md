@@ -9,14 +9,14 @@ It *should* support all its functionalities, although
 I'm still not sure if I included everything.
 If you find any bugs please report them immediately.
 
-TODO:
--check for bugs
--add more example sketches
--create a version for Wire1 interace on chips like ATmega328PB
+## TODO:
+- check for bugs
+- add more example sketches
+- create a version for Wire1 interace on chips like ATmega328PB
 
-Commands description:
+## Commands description:
 
-1:Read functions
+#### Read functions
 
 clockClear - clears configuration registers 0x0E and 0x0F. Recommended on startup, not required though.
 
@@ -91,7 +91,7 @@ readA2hours - returns value of hours for alarm 2.
 
 readA2day - returns value of days for alarm 2.
 
-2:Set functions
+#### Set functions
 
 setSeconds - sets seconds. Takes 8-bit int value.
 
