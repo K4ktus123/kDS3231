@@ -16,9 +16,9 @@ If you find any bugs please report them immediately.
 4. Enjoy!
 
 ## TODO
-- check for bugs
-- add more example sketches
-- create a version for Wire1 interace on chips like ATmega328PB
+- Check for bugs
+- Add more example sketches
+- Create a version for Wire1 interace on chips like ATmega328PB
 - Figure out how to create boards manager link for easy installation
 
 ## Commands description
