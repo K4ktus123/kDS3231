@@ -16,7 +16,7 @@ You can download the modified version [here](https://github.com/K4ktus123/kDS323
 ## Installation
 1. Download the repository
 2. Extract the ZIP file
-3. Rename the extracted folder to "kDS3231" or "kDS3231w1", depending on the version you're willing to use
+3. Rename the extracted folder to "kDS3231" or "kDS3231w1", depending on the version you downloaded
 4. Place the extracted folder in libraries folder inside your Arduino folder
 5. Enjoy!
 
