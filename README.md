@@ -9,12 +9,19 @@ It *should* support all its functionalities, although
 I'm still not sure if I included everything.
 If you find any bugs please report them immediately.
 
-## TODO:
+## Installation
+1. Download the repository
+2. Extract the ZIP file
+3. Place the extracted folder in libraries folder inside your Arduino folder
+4. Enjoy!
+
+## TODO
 - check for bugs
 - add more example sketches
 - create a version for Wire1 interace on chips like ATmega328PB
+- Figure out how to create boards manager link for easy installation
 
-## Commands description:
+## Commands description
 
 #### Read functions
 
