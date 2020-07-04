@@ -71,7 +71,7 @@ readStatus - returns value of status register.
 
 readOffset - returns value of offset register.
 
-readTemp - returns temperature read by the IC in degrees C.
+readTemp - returns temperature measured by the IC in degrees C.
 
 readA1mode - returns alarm 1 mode. Possible values are:
 0 - when day, minutes, hours and seconds match. Day interpreted as day of month.
