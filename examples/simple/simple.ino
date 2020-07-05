@@ -1,9 +1,9 @@
 /*kDS3231w1
  * 
- * Arduino library for DS3231w1 RTC
+ * Arduino library for DS3231 RTC on Wire1 interface
  * Copyright 2020 Bartosz Kozieł
  * 
- * This file is part of kDS3231 library.
+ * This file is part of kDS3231w1 library.
 
     kDS3231w1 is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
