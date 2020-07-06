@@ -23,7 +23,7 @@ You can download the modified version [here](https://github.com/K4ktus123/kDS323
 ## TODO
 - Check for bugs
 - Add more example sketches
-- Figure out how to create boards manager link for easy installation
+- Figure out how to create library manager link for easy installation
 
 ## Commands description
 
