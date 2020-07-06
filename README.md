@@ -7,7 +7,7 @@ and crystal. It's made by Maxim Integrated.
 kDS3231 is an Arduino library for that chip.
 It *should* support all its functionalities, although
 I'm still not sure if I included everything.
-If you find any bugs please report them immediately.
+#### If you find any bugs please report them immediately.
 
 ## Wire1 interface
 I'm happy to tell you that now you can use this library with the second I²C interface on microcontrollers such as ATmega328PB.
