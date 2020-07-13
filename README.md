@@ -180,4 +180,4 @@ setA1mode('S')
 ```
 Don't forget to enable it, as well as set the INTCN bit to one.
 
-Have a look at DS3231 datasheet for further reference.
+Have a look at DS3231 datasheet (included in extras folder) for further reference.
