@@ -23,6 +23,7 @@ You can download the modified version [here](https://github.com/K4ktus123/kDS323
 ## TODO
 - Check for bugs
 - Add more example sketches
+- Add to Arduino IDE library mnager
 
 ## Commands description
 
