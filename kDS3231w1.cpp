@@ -103,17 +103,17 @@ int8_t kDS3231w1::readYear()
   return bcd2dec(wireRequest(0x06));
 }
 
-int8_t kDS3231w1::readCentury()
+bool kDS3231w1::readCentury()
 {
   return bcd2dec(wireRequest(0x05)) >> 7;
 }
 
-int8_t kDS3231w1::readEOSC()
+bool kDS3231w1::readEOSC()
 {
   return !(wireRequest(0x0E) >> 7);
 }
 
-int8_t kDS3231w1::readBBSQW()
+bool kDS3231w1::readBBSQW()
 {
   return (wireRequest(0x0E) & B01111111) >> 6;
 }
@@ -132,17 +132,17 @@ int kDS3231w1::readSQWFreq()
   }
 }
 
-int8_t kDS3231w1::readINTCN()
+bool kDS3231w1::readINTCN()
 {
   return (wireRequest(0x0E) & B00000111) >> 2;
 }
 
-int8_t kDS3231w1::readA1enable()
+bool kDS3231w1::readA1Enable()
 {
   return (wireRequest(0x0E) & B00000011) >> 1;
 }
 
-int8_t kDS3231w1::readA2enable()
+bool kDS3231w1::readA2Enable()
 {
   return wireRequest(0x0E) & B00000001;
 }
@@ -152,27 +152,27 @@ int8_t kDS3231w1::readControl()
   return wireRequest(0x0E);
 }
 
-int8_t kDS3231w1::readOSF()
+bool kDS3231w1::readOSF()
 {
   return wireRequest(0x0F) >> 7;
 }
 
-int8_t kDS3231w1::read32K()
+bool kDS3231w1::read32KEnable()
 {
   return (wireRequest(0x0F) & B00001111)  >> 3;
 }
 
-int8_t kDS3231w1::readBSY()
+bool kDS3231w1::readBSY()
 {
   return (wireRequest(0x0F) & B00000111)  >> 2;
 }
 
-int8_t kDS3231w1::readA2trigger()
+bool kDS3231w1::readA2Trigger()
 {
   return (wireRequest(0x0F) & B00000011)  >> 1;
 }
 
-int8_t kDS3231w1::readA1trigger()
+bool kDS3231w1::readA1Trigger()
 {
   return wireRequest(0x0F) & B00000001;
 }
@@ -189,65 +189,86 @@ int8_t kDS3231w1::readOffset()
 
 double kDS3231w1::readTemp()
 {
-  //int8_t a = wireRequest(0x11);
-  //double b = wireRequest(0x12) >> 6;
-  //return a+(b/4);
   return wireRequest(0x11) + ((wireRequest(0x12) >> 6) / 4);
 }
 
-int8_t kDS3231w1::readA1mode()
+char kDS3231w1::readA1Mode()
 {
   int8_t val=(wireRequest(0x07) >> 7) | ((wireRequest(0x08) >> 6) & B00000010) | ((wireRequest(0x09) >> 5) & B00000100) | ((wireRequest(0x0A) >> 4) & B00001000);
   if(val == 0) {
-    return val+((wireRequest(0x0A) >> 6) & B00000001);
+    val = val+((wireRequest(0x0A) >> 6) & B00000001);
   }
-  else {
-    return val;
+  char A1Mode;
+  switch(val) {
+    case 0:
+      A1Mode = 'D';
+    case 1:
+      A1Mode = 'd';
+    case 8:
+      A1Mode = 'h';
+    case 12:
+      A1Mode = 'm';
+    case 14:
+      A1Mode = 's';
+    case 15:
+     A1Mode = 'S';
   }
+  return A1Mode;
 }
 
-int8_t kDS3231w1::readA2mode()
+char kDS3231w1::readA2Mode()
 {
   int8_t val=(wireRequest(0x0B) >> 7) | ((wireRequest(0x0C) >> 6) & B00000010) | ((wireRequest(0x0D) >> 5) & B00000100);
   if(val == 0) {
-    return val+((wireRequest(0x0D) >> 6) & B00000001);
+    val = val+((wireRequest(0x0D) >> 6) & B00000001);
   }
-  else {
-    return val;
+  char A2Mode;
+  switch(val) {
+    case 0:
+      A2Mode = 'D';
+    case 1:
+      A2Mode = 'd';
+    case 4:
+      A2Mode = 'h';
+    case 6:
+      A2Mode = 'm';
+    case 7:
+      A2Mode = 'M';
   }
+  return A2Mode;
 }
 
-int8_t kDS3231w1::readA1seconds()
+int8_t kDS3231w1::readA1Seconds()
 {
   return bcd2dec(wireRequest(0x07) & B01111111);
 }
 
-int8_t kDS3231w1::readA1minutes()
+int8_t kDS3231w1::readA1Minutes()
 {
   return bcd2dec(wireRequest(0x08) & B01111111);
 }
 
-int8_t kDS3231w1::readA1hours()
+int8_t kDS3231w1::readA1Hours()
 {
   return bcd2dec(wireRequest(0x09) & B01111111);
 }
 
-int8_t kDS3231w1::readA1day()
+int8_t kDS3231w1::readA1Day()
 {
   return bcd2dec(wireRequest(0x0A) & B00111111);
 }
 
-int8_t kDS3231w1::readA2minutes()
+int8_t kDS3231w1::readA2Minutes()
 {
   return bcd2dec(wireRequest(0x0B) & B01111111);
 }
 
-int8_t kDS3231w1::readA2hours()
+int8_t kDS3231w1::readA2Hours()
 {
   return bcd2dec(wireRequest(0x0C) & B01111111);
 }
 
-int8_t kDS3231w1::readA2day()
+int8_t kDS3231w1::readA2Day()
 {
   return bcd2dec(wireRequest(0x0D) & B00111111);
 }
@@ -281,9 +302,9 @@ void kDS3231w1::setMonth(int8_t val)
   wireTransmit(0x05, dec2bcd(val));
 }
 
-void kDS3231w1::setYear(int val)
+void kDS3231w1::setYear(int8_t val)
 {
-  wireTransmit(0x06, dec2bcd(val-2000));
+  wireTransmit(0x06, dec2bcd(val));
 }
 
 void kDS3231w1::setOffset(int8_t val)
@@ -331,7 +352,7 @@ void kDS3231w1::setINTCN(bool val)
   }
 }
 
-void kDS3231w1::setSQWfreq(int val)
+void kDS3231w1::setSQWFreq(int val)
 {
   switch(val) {
     case 1:
@@ -349,7 +370,7 @@ void kDS3231w1::setSQWfreq(int val)
   }
 }
 
-void kDS3231w1::setA1enable(bool val)
+void kDS3231w1::setA1Enable(bool val)
 {
   if(val == 1) {
     wireTransmit(0x0E, (wireRequest(0x0E) | B00000001));
@@ -359,7 +380,7 @@ void kDS3231w1::setA1enable(bool val)
   }
 }
 
-void kDS3231w1::setA2enable(bool val)
+void kDS3231w1::setA2Enable(bool val)
 {
   if(val == 1) {
     wireTransmit(0x0E, (wireRequest(0x0E) | B00000010));
@@ -369,17 +390,17 @@ void kDS3231w1::setA2enable(bool val)
   }
 }
 
-void kDS3231w1::clearA1trigger()
+void kDS3231w1::clearA1Trigger()
 {
   wireTransmit(0x0F, (wireRequest(0x0F) & B11111110));
 }
 
-void kDS3231w1::clearA2trigger()
+void kDS3231w1::clearA2Trigger()
 {
   wireTransmit(0x0F, (wireRequest(0x0F) & B11111101));
 }
 
-void kDS3231w1::set32Kenable(bool val)
+void kDS3231w1::set32KEnable(bool val)
 {
   if(val == 1) {
     wireTransmit(0x0F, (wireRequest(0x0F) | B00001000));
@@ -394,7 +415,7 @@ void kDS3231w1::clearOSF()
   wireTransmit(0x0F, (wireRequest(0x0F) | B01111111));
 }
 
-void kDS3231w1::setA1mode(char val)
+void kDS3231w1::setA1Mode(char val)
 {
   switch(val) {
     case 'D':
@@ -436,7 +457,7 @@ void kDS3231w1::setA1mode(char val)
   }
 }
 
-void kDS3231w1::setA2mode(char val)
+void kDS3231w1::setA2Mode(char val)
 {
   switch(val) {
     case 'D':
@@ -467,37 +488,37 @@ void kDS3231w1::setA2mode(char val)
   }
 }
 
-void kDS3231w1::setA1seconds(int8_t val)
+void kDS3231w1::setA1Seconds(int8_t val)
 {
   wireTransmit(0x07, (wireRequest(0x07) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA1minutes(int8_t val)
+void kDS3231w1::setA1Minutes(int8_t val)
 {
   wireTransmit(0x08, (wireRequest(0x08) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA1hours(int8_t val)
+void kDS3231w1::setA1Hours(int8_t val)
 {
   wireTransmit(0x09, (wireRequest(0x09) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA1day(int8_t val)
+void kDS3231w1::setA1Day(int8_t val)
 {
   wireTransmit(0x0A, (wireRequest(0x0A) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA2minutes(int8_t val)
+void kDS3231w1::setA2Minutes(int8_t val)
 {
   wireTransmit(0x0B, (wireRequest(0x0B) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA2hours(int8_t val)
+void kDS3231w1::setA2Hours(int8_t val)
 {
   wireTransmit(0x0C, (wireRequest(0x0C) & B10000000) | dec2bcd(val));
 }
 
-void kDS3231w1::setA2day(int8_t val)
+void kDS3231w1::setA2Day(int8_t val)
 {
   wireTransmit(0x0D, (wireRequest(0x0D) & B10000000) | dec2bcd(val));
 }
@@ -506,4 +527,3 @@ void kDS3231w1::forceTempConv()
 {
   wireTransmit(0x0E, (wireRequest(0x0E) | B00100000));
 }
-
