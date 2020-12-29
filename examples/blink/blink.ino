@@ -25,16 +25,17 @@
 
 #include <kDS3231.h>
 
+#define intPin 2
+
 kDS3231 clock;
 
 void setup() {
-  Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(13, LOW);
-  pinMode(2, INPUT_PULLUP);
+  pinMode(intPin, INPUT_PULLUP);
   clock.setINTCN(0);
-  clock.setSQWfreq(1);
-  attachInterrupt(0, interrupt, CHANGE);
+  clock.setSQWFreq(1);
+  attachInterrupt(digitalPinToInterrupt(intPin), interrupt, CHANGE);
 }
 
 void interrupt() {
