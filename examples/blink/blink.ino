@@ -1,9 +1,9 @@
 /*kDS3231w1
  * 
- * Arduino library for DS3231 RTC
+ * Arduino library for DS3231 RTC on Wire1 interface
  * Copyright 2020 Bartosz Kozieł
  * 
- * This file is part of kDS3231w1 library.
+ * This file is part of kDS3231 library.
 
     kDS3231w1 is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,16 +25,17 @@
 
 #include <kDS3231w1.h>
 
+#define intPin 2
+
 kDS3231w1 clock;
 
 void setup() {
-  Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(13, LOW);
-  pinMode(2, INPUT_PULLUP);
+  pinMode(intPin, INPUT_PULLUP);
   clock.setINTCN(0);
-  clock.setSQWfreq(1);
-  attachInterrupt(0, interrupt, CHANGE);
+  clock.setSQWFreq(1);
+  attachInterrupt(digitalPinToInterrupt(intPin), interrupt, CHANGE);
 }
 
 void interrupt() {
