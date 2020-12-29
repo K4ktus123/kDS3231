@@ -65,9 +65,10 @@ void loop() {
   Serial.print(".");
   Serial.print(clock.readMonth());
   Serial.print(".");
-  Serial.print("20");
   if(clock.readYear() < 10) { Serial.print("0"); }
   Serial.println(clock.readYear());
+  Serial.print("Temp: ");
+  Serial.println(clock.readTemp());
   Serial.println(" ");
   delay(1000);
 }
